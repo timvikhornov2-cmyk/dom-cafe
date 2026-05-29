@@ -631,7 +631,7 @@ var MENU = {
     {id:'ab_sgm',name:'Сгущённое молоко / Нутелла',     desc:'',sz:[{l:'',v:100}]}
   ],
   bliny: [
-    {id:'bl_pl', name:'Блины',            desc:'Тонкие блины с маслом',              img:'img/bliny-plain.jpg',   sz:[{l:'',v:350}]},
+    {id:'bl_pl', name:'Блины',            desc:'Тонкие блины с маслом',              img:'img/bliny-plain.jpg', imgPos:'70% center',   sz:[{l:'',v:350}]},
     {id:'bl_m',  name:'Блины с мясом',    desc:'Тонкие блины с мясной начинкой',    img:'img/bliny-myaso.jpg',   sz:[{l:'',v:550}]},
     {id:'bl_tv', name:'Блины с творогом', desc:'Тонкие блины с творожной начинкой', img:'img/bliny-tvorog.jpg',  sz:[{l:'',v:450}]},
     {id:'bl_ap', name:'Блины с яблоком',  desc:'Тонкие блины с яблочной начинкой',  img:'img/bliny-yabloko.jpg', sz:[{l:'',v:450}]},
@@ -672,6 +672,7 @@ var MENU = {
     {id:'pa_vat', name:'Ватрушка с творогом',          desc:'', sz:[{l:'',v:120}]},
     {id:'pa_vvi', name:'Ватрушка с творогом и вишней', desc:'', sz:[{l:'',v:150}]},
     {id:'pa_slv', name:'Слойка с вишней',              desc:'', sz:[{l:'',v:200}]},
+    {id:'pa_slch',name:'Слойка с сыром',               desc:'', sz:[{l:'',v:200}]},
     {id:'pa_kur', name:'Курник',                        desc:'', img:'img/pastry-kurnik.jpg', sz:[{l:'',v:250}]},
     {id:'pa_sam', name:'Самса с курицей',               desc:'', img:'img/pastry-samsa.jpg',  sz:[{l:'',v:150}]}
   ]
@@ -823,7 +824,7 @@ function renderMenu() {
         ctrl = '<button class="add-btn" onclick="addItem(\'' + item.id + '\',\'' + esc(sz.l) + '\')">+ В корзину</button>';
       }
       var sImgHtml = item.img
-        ? '<div class="item-img-wrap"><img class="item-img" src="' + item.img + '" alt="' + item.name + '"></div>'
+        ? '<div class="item-img-wrap"><img class="item-img"' + (item.imgPos ? ' style="object-position:' + item.imgPos + '"' : '') + ' src="' + item.img + '" alt="' + item.name + '"></div>'
         : '';
       return '<div class="item-card">'
         + sImgHtml
@@ -861,9 +862,9 @@ function renderMenu() {
       }
 
       var imgHtml = selSz.img
-        ? '<div class="item-img-wrap"><img class="item-img" src="' + selSz.img + '" alt="' + item.name + '"></div>'
+        ? '<div class="item-img-wrap"><img class="item-img"' + (item.imgPos ? ' style="object-position:' + item.imgPos + '"' : '') + ' src="' + selSz.img + '" alt="' + item.name + '"></div>'
         : item.img
-        ? '<div class="item-img-wrap"><img class="item-img" src="' + item.img + '" alt="' + item.name + '"></div>'
+        ? '<div class="item-img-wrap"><img class="item-img"' + (item.imgPos ? ' style="object-position:' + item.imgPos + '"' : '') + ' src="' + item.img + '" alt="' + item.name + '"></div>'
         : '';
       return '<div class="item-card">'
         + imgHtml
