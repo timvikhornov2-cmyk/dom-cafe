@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Start-Process \"C:\\\\Users\\\\timvi\\\\Desktop\\\\����\\\\DOM.html\")",
+      "PowerShell(Start-Process \"c:\\\\Users\\\\timvi\\\\Desktop\\\\����\\\\index.html\")",
+      "PowerShell($pid_old = Get-Content \"c:\\\\Users\\\\timvi\\\\Desktop\\\\Polymarket\\\\arbbot.pid\" -ErrorAction SilentlyContinue; Write-Output \"PID в файле: $pid_old\"; if \\($pid_old\\) { $p = Get-Process -Id $pid_old -ErrorAction SilentlyContinue; if \\($p\\) { Write-Output \"Процесс ЖИВ: $\\($p.ProcessName\\)\" } else { Write-Output \"Процесс не запущен \\(мёртвый pid-файл\\)\" } })",
+      "PowerShell(cd \"c:\\\\Users\\\\timvi\\\\Desktop\\\\Polymarket\"; Stop-Process -Id 13820 -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 2; Remove-Item arbbot.out -ErrorAction SilentlyContinue; $proc = Start-Process -FilePath \"python\" -ArgumentList \"arb_bot.py\" -WorkingDirectory \"c:\\\\Users\\\\timvi\\\\Desktop\\\\Polymarket\" -RedirectStandardOutput \"arbbot.out\" -RedirectStandardError \"arbbot.err\" -PassThru -WindowStyle Hidden; Set-Content -Path \"arbbot.pid\" -Value $proc.Id; Start-Sleep -Seconds 8; if \\(Get-Process -Id $proc.Id -ErrorAction SilentlyContinue\\) { Write-Output \"Бот запущен, PID=$\\($proc.Id\\)\" } else { Write-Output \"Бот УПАЛ\"; Get-Content arbbot.err -Tail 15 }; Get-Content arbbot.out -Tail 6)",
+      "PowerShell(cd \"c:\\\\Users\\\\timvi\\\\Desktop\\\\Polymarket\"; Get-Content arbbot.out -Head 8; Write-Output \"...\"; Start-Sleep -Seconds 30; \\($\\(Get-Content arbbot.out\\) | Select-String \"\\\\[status\\\\]\" | Select-Object -Last 1\\).Line)"
+    ]
+  }
+}
